@@ -24,6 +24,7 @@ jobs:
       - name: Run Vulture
         run: vulture formation_indus_ds_avancee scripts --min-confidence 100
   quality:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
