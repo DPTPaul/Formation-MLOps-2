@@ -29,6 +29,6 @@ jobs:
           --sort-by-size
       - name: Run tests
         run:  |
-          pytest --cov=. --cov-report=term-missing
+          make tests
 
 
