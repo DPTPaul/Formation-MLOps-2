@@ -25,8 +25,11 @@ jobs:
         run: vulture formation_indus_ds_avancee scripts --min-confidence 100
       - name: Run tests
         run: python -m pytest tests/test_unit
-      - name: Run Quality
+      - name: Run Quality (tests unitaires)
         run: make tests-unitaires
       # Add behave command
-      - name: 
+      - name: Run behave sur tests fonctionnels
+        run: make tests-fonctionnels
+      - name: Pyramide des tests
+        run: ./tests/tests_pyramid.sh
 
