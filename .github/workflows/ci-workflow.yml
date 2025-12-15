@@ -24,7 +24,7 @@ jobs:
           flake8 .
       - name: Run Vulture
         run:  |
-        vulture .\
+          vulture .\
           --min-confidence 80 \
           --exclude 'setup.py,*/tests/*' \
           --sort-by-size
