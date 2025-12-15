@@ -21,12 +21,11 @@ jobs:
         run:  pip install -r requirements_test.txt
       - name: Run Linter
         run:  |
-          flake8 .
+          flake8 tests scripts formation_indus_ds_avancee
       - name: Run Vulture
         run:  |
-          vulture .\
+          vulture tests scripts formation_indus_ds_avancee \
           --min-confidence 80 \
-          --exclude 'setup.py,*/tests/*' \
           --sort-by-size
       - name: Run tests
         run:  |
