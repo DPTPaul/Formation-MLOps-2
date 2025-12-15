@@ -29,6 +29,6 @@ jobs:
           --sort-by-size
       - name: Run tests
         run:  |
-          make tests
+          make tests-unitaires
 
 
