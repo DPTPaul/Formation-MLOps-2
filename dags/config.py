@@ -16,4 +16,4 @@ MODEL_REGISTRY_FOLDER = os.path.join(PROJECT_FOLDER, 'models')
 MODEL_PATH = os.path.join(MODEL_REGISTRY_FOLDER, '20200616-140746.joblib')  # To change when needed
 
 # Add your initials to the monitoring table name
-MONITORING_TABLE_NAME = 'monitoring'
+MONITORING_TABLE_NAME = 'monitoring_pg'
