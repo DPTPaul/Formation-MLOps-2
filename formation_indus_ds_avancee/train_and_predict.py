@@ -7,6 +7,8 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 
 
+
+
 def train_model_with_io(features_path: str, model_registry_folder: str) -> None:
     features = pd.read_parquet(features_path)
 
@@ -18,9 +20,15 @@ def train_model(features: pd.DataFrame, model_registry_folder: str) -> None:
     X = features.drop(columns=[target])
     y = features[target]
     with mlflow.start_run():
-        # insert autolog here ...
+        mlflow.sklearn.autolog()
         model = RandomForestRegressor(n_estimators=1, max_depth=10, n_jobs=1)
         model.fit(X, y)
+
+        mlflow.sklearn.log_model(
+            sk_model=model,
+            artifact_path="random_forest_model",
+            registered_model_name="mon_modele_entraine"
+        )
     time_str = time.strftime('%Y%m%d-%H%M%S')
     joblib.dump(model, os.path.join(model_registry_folder, time_str + '.joblib'))
 
@@ -36,6 +44,7 @@ def predict_with_io(features_path: str, model_path: str, predictions_folder: str
 
 
 def predict(features: pd.DataFrame, model_path: str) -> pd.DataFrame:
-    model = joblib.load(model_path)
+    model = mlflow.sklearn.load_model("models:/modele_de_prod/latest")
+    #model = joblib.load(model_path)
     features['predictions'] = model.predict(features)
     return features
